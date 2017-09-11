@@ -10,9 +10,16 @@ namespace MvcMovie.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MvcMovieContext _context;
+
+		public HomeController(MvcMovieContext context)
+		{
+			_context = context;
+		}
+
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Tip.ToList());
         }
 
         public IActionResult About()
