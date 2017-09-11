@@ -17,7 +17,7 @@ namespace wheelchair_tips.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Your applicationn description page.";
 
             return View();
         }
