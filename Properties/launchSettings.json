@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "wheelchair_tips": {
+    "MvcMovie": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

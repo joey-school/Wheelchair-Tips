@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace wheelchair_tips
+using Microsoft.EntityFrameworkCore;
+using MvcMovie.Models;
+
+namespace MvcMovie
 {
     public class Startup
     {
@@ -22,6 +25,8 @@ namespace wheelchair_tips
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+			services.AddDbContext<MvcMovieContext>(options => options.UseSqlite("Data Source=MvcMovie3.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

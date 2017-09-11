@@ -1,6 +1,6 @@
 using System;
 
-namespace wheelchair_tips.Models
+namespace MvcMovie.Models
 {
     public class ErrorViewModel
     {
