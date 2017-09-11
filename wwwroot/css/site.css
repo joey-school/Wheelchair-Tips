@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
 /* Wrapping element */
@@ -32,4 +33,26 @@
     .carousel-caption {
         display: none;
     }
+}
+
+.tips {
+    width: 800px;
+    margin: 0 auto;
+    border: 1px dashed;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.tip {
+    width: calc(100% / 3);
+    border: 1px solid;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.tip:before {
+    content: '';
+    float: left;
+    padding-top: 100%;
 }
