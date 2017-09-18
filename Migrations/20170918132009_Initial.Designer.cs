@@ -11,32 +11,15 @@ using System;
 namespace MvcMovie.Migrations
 {
     [DbContext(typeof(MvcMovieContext))]
-    [Migration("20170911114938_AddTipModel")]
-    partial class AddTipModel
+    [Migration("20170918132009_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
-
-            modelBuilder.Entity("MvcMovie.Models.Movie", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Genre");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<DateTime>("ReleaseDate");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Movie");
-                });
 
             modelBuilder.Entity("MvcMovie.Models.Tip", b =>
                 {

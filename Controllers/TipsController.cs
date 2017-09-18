@@ -21,7 +21,7 @@ namespace MvcMovie.Controllers
         // GET: Tips
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tip.ToListAsync());
+            return View(await _context.Tips.ToListAsync());
         }
 
         // GET: Tips/Details/5
@@ -32,7 +32,7 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var tip = await _context.Tip
+            var tip = await _context.Tips
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (tip == null)
             {
@@ -72,7 +72,7 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.ID == id);
+            var tip = await _context.Tips.SingleOrDefaultAsync(m => m.ID == id);
             if (tip == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace MvcMovie.Controllers
                 return NotFound();
             }
 
-            var tip = await _context.Tip
+            var tip = await _context.Tips
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (tip == null)
             {
@@ -138,15 +138,15 @@ namespace MvcMovie.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Tip.Remove(tip);
+            var tip = await _context.Tips.SingleOrDefaultAsync(m => m.ID == id);
+            _context.Tips.Remove(tip);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TipExists(int id)
         {
-            return _context.Tip.Any(e => e.ID == id);
+            return _context.Tips.Any(e => e.ID == id);
         }
     }
 }

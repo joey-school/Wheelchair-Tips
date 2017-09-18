@@ -19,7 +19,7 @@ namespace MvcMovie.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Tip.ToList());
+            return View(_context.Tips.ToList());
         }
 
         public IActionResult About()
