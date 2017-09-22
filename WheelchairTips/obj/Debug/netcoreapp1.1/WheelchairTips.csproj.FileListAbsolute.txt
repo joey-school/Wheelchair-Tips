@@ -1,0 +1,11 @@
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\bin\Debug\netcoreapp1.1\WheelchairTips.deps.json
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\bin\Debug\netcoreapp1.1\WheelchairTips.runtimeconfig.json
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\bin\Debug\netcoreapp1.1\WheelchairTips.runtimeconfig.dev.json
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\bin\Debug\netcoreapp1.1\WheelchairTips.dll
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\bin\Debug\netcoreapp1.1\WheelchairTips.pdb
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.csprojResolveAssemblyReference.cache
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.csproj.CoreCompileInputs.cache
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.AssemblyInfoInputs.cache
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.AssemblyInfo.cs
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.dll
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.pdb
