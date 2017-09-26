@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using WheelchairTips.Models;
 
 namespace WheelchairTips
 {
@@ -29,6 +31,9 @@ namespace WheelchairTips
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDbContext<WheelchairTipsContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WheelchairTipsContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
