@@ -15,5 +15,7 @@ namespace WheelchairTips.Models
         }
 
         public DbSet<WheelchairTips.Models.Tip> Tip { get; set; }
+
+        public DbSet<WheelchairTips.Models.Category> Category { get; set; }
     }
 }

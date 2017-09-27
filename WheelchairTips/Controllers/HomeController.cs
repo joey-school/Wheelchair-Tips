@@ -18,7 +18,9 @@ namespace WheelchairTips.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Tip.ToList());
+            ViewData["Tips"] = _context.Tip.ToList();
+            ViewData["Categories"] = _context.Category.ToList();
+            return View();
         }
 
         public IActionResult About()

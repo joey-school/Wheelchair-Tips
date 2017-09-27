@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    box-sizing: border-box;
 }
 
 /* Wrapping element */
@@ -8,13 +9,6 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
 }
 
 /* Carousel */
@@ -28,10 +22,42 @@ textarea {
     width: 100%;
 }
 
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
     .carousel-caption {
         display: none;
     }
+}
+
+#master-wrap {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.tips {
+    /*width: 800px;
+    margin: 0 auto;*/
+    border: 1px dashed;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.tip {
+    width: calc(100% / 3);
+    border: 1px solid;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.tip:before {
+    content: '';
+    float: left;
+    padding-top: 100%;
 }
