@@ -1,17 +1,19 @@
-﻿@using WheelchairTips.Models;
+﻿@model WheelchairTips.Models.ViewModels.TipsCategoriesViewModel
 
 @{
     ViewData["Title"] = "Home Page";
     Layout = "_CustomLayout";
-
-    List<Tip> tips = ViewData["Tips"] as List<Tip>;
-    List<Category> categories = ViewData["Categories"] as List<Category>;
 }
 
 <div id="master-wrap">
     <h1>Here are some handy tips.</h1>
     
-    @foreach (var item in categories)
+    <!--<form asp-controller="Home" asp-action="Joey" method="post">
+        <select asp-for="Category" asp-items='ViewData["Categories"]'></select>
+        <br /><button type="submit">Register</button>
+    </form>-->
+
+    @foreach (var item in Model.Categories)
     {    
         <p>
             @Html.DisplayFor(modelItem => item.Name)
@@ -19,7 +21,7 @@
     }
 
     <div class="tips">
-        @foreach (var item in tips)
+        @foreach (var item in Model.Tips)
         {
             <div class="tip">
                 <p>

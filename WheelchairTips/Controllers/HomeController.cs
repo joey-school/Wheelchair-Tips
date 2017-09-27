@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WheelchairTips.Models;
+using WheelchairTips.Models.ViewModels;
 
 namespace WheelchairTips.Controllers
 {
@@ -18,8 +19,16 @@ namespace WheelchairTips.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Tips"] = _context.Tip.ToList();
-            ViewData["Categories"] = _context.Category.ToList();
+            TipsCategoriesViewModel tipsCategories = new TipsCategoriesViewModel();
+            tipsCategories.Tips = _context.Tip.ToList();
+            tipsCategories.Categories = _context.Category.ToList();
+            return View(tipsCategories);
+        }
+
+        public IActionResult Joey()
+        {
+           
+
             return View();
         }
 
