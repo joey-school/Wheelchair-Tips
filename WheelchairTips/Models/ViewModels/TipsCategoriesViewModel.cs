@@ -8,6 +8,7 @@ namespace WheelchairTips.Models.ViewModels
     public class TipsCategoriesViewModel
     {
         public List<Tip> Tips { get; set; }
+        public string Category { get; set; }
         public List<Category> Categories { get; set; }
     }
 }

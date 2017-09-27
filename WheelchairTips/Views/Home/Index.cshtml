@@ -8,10 +8,10 @@
 <div id="master-wrap">
     <h1>Here are some handy tips.</h1>
     
-    <!--<form asp-controller="Home" asp-action="Joey" method="post">
-        <select asp-for="Category" asp-items='ViewData["Categories"]'></select>
+    <form asp-controller="Home" asp-action="Joey" method="post">
+        <select asp-for="Category" asp-items='@(new SelectList(Model.Categories, "ID", "Name"))'></select>
         <br /><button type="submit">Register</button>
-    </form>-->
+    </form>
 
     @foreach (var item in Model.Categories)
     {    
