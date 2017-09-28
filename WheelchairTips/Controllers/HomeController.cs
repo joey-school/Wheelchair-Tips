@@ -20,19 +20,29 @@ namespace WheelchairTips.Controllers
         public IActionResult Index()
         {
             TipsCategoriesViewModel tipsCategories = new TipsCategoriesViewModel();
-
-
             tipsCategories.Tips = _context.Tip.ToList();
-
 
             tipsCategories.Category = "Cooking";
             tipsCategories.Categories = _context.Category.ToList();
             return View(tipsCategories);
         }
 
-        public IActionResult Joey()
+        [HttpPost]
+        public IActionResult Index(TipsCategoriesViewModel model)
         {
-           
+            if (ModelState.IsValid)
+            {
+                var msg = model.Category;
+                return RedirectToAction("Index", "Tips", new { categoryId = msg });
+            }
+
+            // If we got this far, something failed; redisplay form.
+            return View(model);
+        }
+
+        public IActionResult Joey(string message)
+        {
+            ViewData["foo"] = message;
 
             return View();
         }

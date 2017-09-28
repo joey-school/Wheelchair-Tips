@@ -1,4 +1,4 @@
-using System;
+    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +19,21 @@ namespace WheelchairTips.Controllers
         }
 
         // GET: Tips
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string categoryId)
         {
-            var wheelchairTipsContext = _context.Tip.Include(t => t.Category);
-            return View(await wheelchairTipsContext.ToListAsync());
+            // var wheelchairTipsContext = _context.Tip.Include(t => t.Category);
+
+            //IEnumerable<Tip> tips = wheelchairTipsContext.ToList();
+
+            var category = _context.Category
+                .Single(c => c.Id == Int32.Parse(categoryId));
+
+            IEnumerable<Tip> tips = _context.Entry(category)
+                .Collection(c => c.Tips)
+                .Query()
+                .ToList();
+
+            return View(tips);
         }
 
         // GET: Tips/Details/5
