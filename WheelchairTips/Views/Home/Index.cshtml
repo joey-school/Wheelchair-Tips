@@ -10,15 +10,8 @@
     
     <form asp-controller="Home" asp-action="Joey" method="post">
         <select asp-for="Category" asp-items='@(new SelectList(Model.Categories, "ID", "Name"))'></select>
-        <br /><button type="submit">Register</button>
+        <br /><button type="submit">Filter</button>
     </form>
-
-    @foreach (var item in Model.Categories)
-    {    
-        <p>
-            @Html.DisplayFor(modelItem => item.Name)
-        </p>
-    }
 
     <div class="tips">
         @foreach (var item in Model.Tips)
