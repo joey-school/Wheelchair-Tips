@@ -21,7 +21,8 @@ namespace WheelchairTips.Controllers
         // GET: Tips
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Tip.ToListAsync());
+            var wheelchairTipsContext = _context.Tip.Include(t => t.Category);
+            return View(await wheelchairTipsContext.ToListAsync());
         }
 
         // GET: Tips/Details/5
@@ -33,7 +34,8 @@ namespace WheelchairTips.Controllers
             }
 
             var tip = await _context.Tip
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(t => t.Category)
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (tip == null)
             {
                 return NotFound();
@@ -45,6 +47,7 @@ namespace WheelchairTips.Controllers
         // GET: Tips/Create
         public IActionResult Create()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
 
@@ -53,7 +56,7 @@ namespace WheelchairTips.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,Content,Author")] Tip tip)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,Author,CategoryId")] Tip tip)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +64,7 @@ namespace WheelchairTips.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", tip.CategoryId);
             return View(tip);
         }
 
@@ -72,11 +76,12 @@ namespace WheelchairTips.Controllers
                 return NotFound();
             }
 
-            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.ID == id);
+            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.Id == id);
             if (tip == null)
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", tip.CategoryId);
             return View(tip);
         }
 
@@ -85,9 +90,9 @@ namespace WheelchairTips.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Content,Author")] Tip tip)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,Author,CategoryId")] Tip tip)
         {
-            if (id != tip.ID)
+            if (id != tip.Id)
             {
                 return NotFound();
             }
@@ -101,7 +106,7 @@ namespace WheelchairTips.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipExists(tip.ID))
+                    if (!TipExists(tip.Id))
                     {
                         return NotFound();
                     }
@@ -112,6 +117,7 @@ namespace WheelchairTips.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", tip.CategoryId);
             return View(tip);
         }
 
@@ -124,7 +130,8 @@ namespace WheelchairTips.Controllers
             }
 
             var tip = await _context.Tip
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(t => t.Category)
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (tip == null)
             {
                 return NotFound();
@@ -138,7 +145,7 @@ namespace WheelchairTips.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.ID == id);
+            var tip = await _context.Tip.SingleOrDefaultAsync(m => m.Id == id);
             _context.Tip.Remove(tip);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -146,7 +153,7 @@ namespace WheelchairTips.Controllers
 
         private bool TipExists(int id)
         {
-            return _context.Tip.Any(e => e.ID == id);
+            return _context.Tip.Any(e => e.Id == id);
         }
     }
 }

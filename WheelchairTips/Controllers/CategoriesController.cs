@@ -33,7 +33,7 @@ namespace WheelchairTips.Controllers
             }
 
             var category = await _context.Category
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace WheelchairTips.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Name")] Category category)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace WheelchairTips.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Category.SingleOrDefaultAsync(m => m.ID == id);
+            var category = await _context.Category.SingleOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -85,9 +85,9 @@ namespace WheelchairTips.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
-            if (id != category.ID)
+            if (id != category.Id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace WheelchairTips.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.ID))
+                    if (!CategoryExists(category.Id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace WheelchairTips.Controllers
             }
 
             var category = await _context.Category
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
@@ -138,7 +138,7 @@ namespace WheelchairTips.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Category.SingleOrDefaultAsync(m => m.ID == id);
+            var category = await _context.Category.SingleOrDefaultAsync(m => m.Id == id);
             _context.Category.Remove(category);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -146,7 +146,7 @@ namespace WheelchairTips.Controllers
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.ID == id);
+            return _context.Category.Any(e => e.Id == id);
         }
     }
 }

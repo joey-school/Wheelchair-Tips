@@ -11,7 +11,7 @@
     <h4>Tip</h4>
     <hr />
     <dl class="dl-horizontal">
-        <input type="hidden" asp-for="ID" />
+        <input type="hidden" asp-for="Id" />
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
@@ -29,6 +29,12 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Id)
         </dd>
     </dl>
     
