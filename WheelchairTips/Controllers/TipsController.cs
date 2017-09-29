@@ -21,19 +21,12 @@ namespace WheelchairTips.Controllers
         // GET: Tips
         public IActionResult Index(string categoryId)
         {
-            // var wheelchairTipsContext = _context.Tip.Include(t => t.Category);
-
-            //IEnumerable<Tip> tips = wheelchairTipsContext.ToList();
-
             var category = _context.Category
-                .Single(c => c.Id == Int32.Parse(categoryId));
-
-            IEnumerable<Tip> tips = _context.Entry(category)
-                .Collection(c => c.Tips)
-                .Query()
+                .Where(c => c.Id == Int32.Parse(categoryId))
+                .Include(c => c.Tips)
                 .ToList();
 
-            return View(tips);
+            return View(category);
         }
 
         // GET: Tips/Details/5

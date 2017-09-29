@@ -1,4 +1,4 @@
-@model IEnumerable<WheelchairTips.Models.Tip>
+@model IEnumerable<WheelchairTips.Models.Category>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -9,7 +9,7 @@
     <h1>Our tips per category.</h1>
 
     <div class="tips">
-        @foreach (var item in Model)
+        @foreach (var item in Model.First().Tips)
         {
             <div class="tip">
                 <p>
