@@ -9,3 +9,4 @@ C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\n
 C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.AssemblyInfo.cs
 C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.dll
 C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\WheelchairTips.pdb
+C:\Users\Joey\Desktop\ASP_workspace\wheelchair-tips-1\WheelchairTips\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
