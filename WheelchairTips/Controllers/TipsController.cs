@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WheelchairTips.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WheelchairTips.Controllers
 {
@@ -48,6 +49,7 @@ namespace WheelchairTips.Controllers
             return View(tip);
         }
 
+        [Authorize(Roles = "Manager")]
         // GET: Tips/Create
         public IActionResult Create()
         {

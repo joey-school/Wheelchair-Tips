@@ -22,7 +22,6 @@ namespace WheelchairTips.Controllers
             TipsCategoriesViewModel tipsCategories = new TipsCategoriesViewModel();
             tipsCategories.Tips = _context.Tip.ToList();
 
-            tipsCategories.Category = "Cooking";
             tipsCategories.Categories = _context.Category.ToList();
             return View(tipsCategories);
         }
