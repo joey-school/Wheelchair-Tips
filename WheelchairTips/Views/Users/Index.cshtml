@@ -1,0 +1,29 @@
+@model IEnumerable<UserListViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_CustomLayout";
+}
+
+    <div id="master-wrap">
+        <h1>Users</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    </div>
