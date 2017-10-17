@@ -116,6 +116,10 @@ namespace WheelchairTips.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // When a new user is registered assign it the default role: Member
+                    await _userManager.AddToRoleAsync(user, "Member");
+
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
