@@ -2,12 +2,12 @@
 var sass = require('gulp-sass');
 
 gulp.task('styles', function() {
-    gulp.src('**/*.scss')
+    gulp.src('wwwroot/css/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./'))
+        .pipe(gulp.dest('./wwwroot/css'))
 });
 
 //Watch task
 gulp.task('default',function() {
-    gulp.watch('**/*.scss', ['styles']);
+    gulp.watch('wwwroot/css/*.scss', ['styles']);
 });

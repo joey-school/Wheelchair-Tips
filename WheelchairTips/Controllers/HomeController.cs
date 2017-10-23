@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WheelchairTips.Models;
 using WheelchairTips.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WheelchairTips.Controllers
 {
@@ -22,7 +23,21 @@ namespace WheelchairTips.Controllers
             TipsCategoriesViewModel tipsCategories = new TipsCategoriesViewModel();
             tipsCategories.Tips = _context.Tip.ToList();
 
-            tipsCategories.Categories = _context.Category.ToList();
+           tipsCategories.Categories = new List<SelectListItem>();
+
+           tipsCategories.Categories.Add(new SelectListItem { Value = "", Text = "All" });
+
+            foreach (var category in _context.Category)
+            {
+                tipsCategories.Categories.Add(new SelectListItem { Value = category.Id.ToString(), Text = category.Name });
+            }
+
+            
+
+            /*tipsCategories.Categories = .ToList();
+
+            tipsCategories.Categories.Add(new Category(0, "All", );
+            tipsCategories.Categories = _context.Category.ToList();*/
             return View(tipsCategories);
         }
 
@@ -31,7 +46,7 @@ namespace WheelchairTips.Controllers
         {
             if (ModelState.IsValid)
             {
-                var msg = model.Category;
+                var msg = model.CategoryId;
                 return RedirectToAction("Index", "Tips", new { categoryId = msg });
             }
 

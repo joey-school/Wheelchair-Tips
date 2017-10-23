@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WheelchairTips</title>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     <environment names="Development">
@@ -17,27 +18,23 @@
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
-    
-
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
+    <nav class="head">
+        <div class="nav-wrapper container">
+            <a href="/Home" class="brand-logo"><i class="material-icons">accessible</i>WheelchairTips.com</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                <li><a asp-area="" asp-controller="Tips" asp-action="Index">Tips</a></li>
+                <li><a asp-area="" asp-controller="Tips" asp-action="Index">Submit a tip</a></li>
+                <li><a asp-area="" asp-controller="Tips" asp-action="Index">Contact</a></li>
                 @await Html.PartialAsync("_LoginPartial")
             </ul>
         </div>
     </nav>
 
-                    
-
-                
-
+    <div class="container">
 
         @RenderBody()
 
+    </div>  
 
     <environment names="Development">
 
@@ -49,6 +46,15 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+        // Write your Javascript code.
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+
+        console.log(8);
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>

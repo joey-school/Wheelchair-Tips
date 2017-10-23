@@ -7,25 +7,45 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WheelchairTips.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace WheelchairTips.Controllers
 {
+    [Authorize]
     public class TipsController : Controller
     {
         private readonly WheelchairTipsContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public TipsController(WheelchairTipsContext context)
+        public TipsController(WheelchairTipsContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Tips
+        [AllowAnonymous]
         public IActionResult Index(string categoryId)
         {
-            var category = _context.Category
+            
+            List<Category> category;
+
+            if (!String.IsNullOrEmpty(categoryId))
+            {
+                category = _context.Category
                 .Where(c => c.Id == Int32.Parse(categoryId))
                 .Include(c => c.Tips)
                 .ToList();
+            }
+
+            else
+            {
+                category = _context.Category
+                    .Include(c => c.Tips)
+                    .ToList();
+            }
+
+            
 
             return View(category);
         }
@@ -49,10 +69,14 @@ namespace WheelchairTips.Controllers
             return View(tip);
         }
 
-        [Authorize(Roles = "Manager")]
+
+
         // GET: Tips/Create
+        [Authorize]
         public IActionResult Create()
         {
+
+
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
@@ -62,14 +86,16 @@ namespace WheelchairTips.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,Author,CategoryId")] Tip tip)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,CategoryId")] Tip tip)
         {
             if (ModelState.IsValid)
             {
+                tip.ApplicationUserId = _userManager.GetUserId(HttpContext.User);
                 _context.Add(tip);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", tip.CategoryId);
             return View(tip);
         }

@@ -139,7 +139,7 @@ namespace WheelchairTips.Controllers
 
         //
         // POST: /Account/Logout
-        [HttpPost]
+        //[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {

@@ -2,22 +2,40 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    Layout = "_CustomLayout";
 }
 
 <div id="master-wrap">
     <h1>Our tips per category.</h1>
 
-    <div class="tips">
-        @foreach (var item in Model.First().Tips)
-        {
-            <div class="tip">
-                <p>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </p>
+    @foreach (var category in Model)
+    {
+        <p>
+            Selected category: @Html.DisplayFor(modelItem => category.Name)
+        </p>
+    }
 
-                <a asp-controller="Tips" asp-action="Details" asp-route-id="@item.Id">Details</a>
-            </div>
-        }
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            @foreach (var tip in category.Tips)
+            {
+                <div class="col s6 m6">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="http://materializecss.com/images/sample-1.jpg">
+                            <span class="card-title">@Html.DisplayFor(modelItem => tip.Title)</span>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                @Html.DisplayFor(modelItem => tip.Content)
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <a asp-controller="Tips" asp-action="Details" asp-route-id="@tip.Id" class="blue-grey-text text-darken-4">Details</a>
+                        </div>
+                    </div>
+                </div>
+                }
+            }
     </div>
 </div>

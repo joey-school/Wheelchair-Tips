@@ -1,41 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using WheelchairTips.Models;
 
-namespace WheelchairTips.Data.Migrations
+namespace WheelchairTips.Migrations
 {
     [DbContext(typeof(WheelchairTipsContext))]
-    [Migration("20170928156004_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20171023111651_RemoveOuthorTip")]
+    partial class RemoveOuthorTip
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc3")
+                .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
                     b.Property<string>("Name")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
+                        .IsUnique()
                         .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
@@ -107,8 +106,6 @@ namespace WheelchairTips.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("AspNetUserRoles");
                 });
 
@@ -129,7 +126,8 @@ namespace WheelchairTips.Data.Migrations
 
             modelBuilder.Entity("WheelchairTips.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
@@ -137,7 +135,7 @@ namespace WheelchairTips.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Email")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -146,10 +144,10 @@ namespace WheelchairTips.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash");
 
@@ -162,7 +160,7 @@ namespace WheelchairTips.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -174,6 +172,42 @@ namespace WheelchairTips.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("WheelchairTips.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("WheelchairTips.Models.Tip", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<string>("Title")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Tip");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -210,6 +244,18 @@ namespace WheelchairTips.Data.Migrations
                     b.HasOne("WheelchairTips.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WheelchairTips.Models.Tip", b =>
+                {
+                    b.HasOne("WheelchairTips.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Tips")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("WheelchairTips.Models.Category", "Category")
+                        .WithMany("Tips")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }

@@ -8,9 +8,10 @@ using WheelchairTips.Models;
 namespace WheelchairTips.Migrations
 {
     [DbContext(typeof(WheelchairTipsContext))]
-    partial class WheelchairTipsContextModelSnapshot : ModelSnapshot
+    [Migration("20171023110023_AddedValidation2")]
+    partial class AddedValidation2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -193,12 +194,14 @@ namespace WheelchairTips.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
+                    b.Property<string>("Author");
+
                     b.Property<int>("CategoryId");
 
                     b.Property<string>("Content");
 
                     b.Property<string>("Title")
-                        .IsRequired();
+                        .HasMaxLength(5);
 
                     b.HasKey("Id");
 
