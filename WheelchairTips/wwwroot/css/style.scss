@@ -1,4 +1,8 @@
-﻿#logoutForm {
+﻿body {
+    font-family: 'Lato', sans-serif;
+}
+
+#logoutForm {
     display: inline;
 }
 
@@ -18,4 +22,9 @@ nav.head {
 .brand-logo i {
     font-size: 40px !important;
     
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: 400;
 }

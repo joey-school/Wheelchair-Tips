@@ -4,25 +4,25 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-            <li>
-                <!-- Dropdown Trigger -->
-                <a class='dropdown-button' href='#' data-activates='dropdown1'> @UserManager.GetUserName(User)</a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                <li>
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-button' href='#' data-activates='dropdown1'> @UserManager.GetUserName(User)</a>
 
-                <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Settings</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                    <li class="divider"></li>
-                    <li><button type="submit" class="">Log out</button></li>
-                </ul>
-            </li>
-    </form>
-}
-else
-{
-    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-    <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
-}
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Settings</a></li>
+                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                        <li class="divider"></li>
+                        <li><button type="submit" class="">Log out</button></li>
+                    </ul>
+                </li>
+            </form>
+        }
+        else
+        {
+            <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        }
