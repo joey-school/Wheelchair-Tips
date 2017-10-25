@@ -1,23 +1,15 @@
-@model IEnumerable<WheelchairTips.Models.Category>
+@model WheelchairTips.Models.ViewModels.TipsCategoriesViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div id="master-wrap">
-    <h1>Our tips per category.</h1>
-
-    @foreach (var category in Model)
-    {
-        <p>
-            Selected category: @Html.DisplayFor(modelItem => category.Name)
-        </p>
-    }
+    <h1>Our tips !</h1>
 
     <div class="row">
-        @foreach (var category in Model)
-        {
-            @foreach (var tip in category.Tips)
+
+            @foreach (var tip in Model.Tips)
             {
                 <div class="col s6 m6">
                     <div class="card">
@@ -35,7 +27,6 @@
                         </div>
                     </div>
                 </div>
-                }
             }
     </div>
 </div>

@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using WheelchairTips.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using WheelchairTips.Models.ViewModels;
 
 namespace WheelchairTips.Controllers
 {
-    [Authorize]
     public class TipsController : Controller
     {
         private readonly WheelchairTipsContext _context;
@@ -23,32 +23,42 @@ namespace WheelchairTips.Controllers
             _userManager = userManager;
         }
 
-        // GET: Tips
-        [AllowAnonymous]
-        public IActionResult Index(string categoryId)
+        public IActionResult Index(string categoryId, string searchQuery)
         {
-            
-            List<Category> category;
+            TipsCategoriesViewModel model = new TipsCategoriesViewModel();
 
-            if (!String.IsNullOrEmpty(categoryId))
+            if (!String.IsNullOrEmpty(categoryId) && String.IsNullOrEmpty(searchQuery))
             {
-                category = _context.Category
-                .Where(c => c.Id == Int32.Parse(categoryId))
-                .Include(c => c.Tips)
-                .ToList();
-            }
+                Category category = _context.Category
+                    .Where(c => c.Id == Int32.Parse(categoryId))
+                    .Include(c => c.Tips)
+                    .Single();
 
+                model.Tips = category.Tips;
+            }
+            else if (!String.IsNullOrEmpty(categoryId) && !String.IsNullOrEmpty(searchQuery))
+            {
+                model.Tips = _context.Tip
+                    .Where(t => t.CategoryId == Int32.Parse(categoryId))
+                    .Where(t => t.Content.Contains(searchQuery))
+                    .ToList();
+            }
+            else if (String.IsNullOrEmpty(categoryId) && !String.IsNullOrEmpty(searchQuery))
+            {
+                // need to call category categories
+                model.Tips = _context.Tip
+                    .Where(t => t.Content.Contains(searchQuery))
+                    .ToList();
+            }
             else
             {
-                category = _context.Category
-                    .Include(c => c.Tips)
+                model.Tips = _context.Tip
                     .ToList();
             }
 
-            
-
-            return View(category);
+            return View(model);
         }
+
 
         // GET: Tips/Details/5
         public async Task<IActionResult> Details(int? id)
