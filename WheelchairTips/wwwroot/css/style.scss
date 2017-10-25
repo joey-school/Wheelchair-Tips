@@ -37,3 +37,21 @@ h1 {
     }
 
 }
+
+main {
+    padding-left: 300px;
+}
+
+
+.admin {
+    .side-nav {
+        margin-top: 64px;
+    }
+
+    .container.content {
+        @media only screen and (min-width: 993px) {
+            width: 85%;
+        }
+
+    }
+}

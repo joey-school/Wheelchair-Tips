@@ -4245,6 +4245,18 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "TagHelperSamples.Bootstrap/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "1.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/TagHelperSamples.Bootstrap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/TagHelperSamples.Bootstrap.dll": {}
+        }
       }
     }
   },
@@ -10927,6 +10939,17 @@
         "system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "TagHelperSamples.Bootstrap/1.1.1": {
+      "sha512": "PojTGSjkj4wA7PAR7LCqDDxCP0Ny2I5tqLSPSLnSscMBm4FNAxFFYozysNx8bKxmYoONi3/17NUy+ak47f/pxw==",
+      "type": "package",
+      "path": "taghelpersamples.bootstrap/1.1.1",
+      "files": [
+        "lib/net451/TagHelperSamples.Bootstrap.dll",
+        "lib/netstandard1.6/TagHelperSamples.Bootstrap.dll",
+        "taghelpersamples.bootstrap.1.1.1.nupkg.sha512",
+        "taghelpersamples.bootstrap.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -10946,7 +10969,8 @@
       "Microsoft.Extensions.Logging.Debug >= 1.1.2",
       "Microsoft.NETCore.App >= 1.1.2",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1",
+      "TagHelperSamples.Bootstrap >= 1.1.1"
     ]
   },
   "packageFolders": {
@@ -11050,6 +11074,10 @@
           "Microsoft.ApplicationInsights.AspNetCore": {
             "target": "Package",
             "version": "2.0.0"
+          },
+          "TagHelperSamples.Bootstrap": {
+            "target": "Package",
+            "version": "1.1.1"
           },
           "Microsoft.AspNetCore.StaticFiles": {
             "target": "Package",
