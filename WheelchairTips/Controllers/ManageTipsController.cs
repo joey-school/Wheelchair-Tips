@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using WheelchairTips.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Identity;
 
 namespace WheelchairTips.Controllers
 {
     public class ManageTipsController : Controller
     {
         private readonly WheelchairTipsContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ManageTipsController(WheelchairTipsContext context)
+        public ManageTipsController(WheelchairTipsContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -23,6 +26,29 @@ namespace WheelchairTips.Controllers
             IEnumerable<Tip> model = _context.Tip.Include(t => t.ApplicationUser).ToList();
 
             return View(model);
+        }
+
+        public IActionResult Create()
+        {
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Title, Content, CategoryId")] Tip tip)
+        {
+            if (ModelState.IsValid)
+            {
+                tip.ApplicationUserId = _userManager.GetUserId(HttpContext.User);
+                _context.Add(tip);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Id", tip.CategoryId);
+            return View(tip);
         }
 
         public IActionResult Edit(int? id)
@@ -56,14 +82,15 @@ namespace WheelchairTips.Controllers
                 return NotFound();
             }
 
-            var tip = await _context.Tip.SingleOrDefaultAsync(s => s.Id == id);
-
+            var tip = _context.Tip
+                .Single(s => s.Id == id);
+            
             if (await TryUpdateModelAsync<Tip>(tip, "", t => t.Title, t => t.Content, t => t.CategoryId))
             {
                 try
                 {
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction("Index");
                 }
                 catch (DbUpdateException /* ex */)
                 {
