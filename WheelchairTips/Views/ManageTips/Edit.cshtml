@@ -1,0 +1,31 @@
+@model WheelchairTips.Models.Tip
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <label asp-for="Title" class="col-md-2 control-label"></label>
+    <input asp-for="Title" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+ 
+    <label asp-for="Content" class="col-md-2 control-label"></label>
+    <input asp-for="Content" class="form-control" />
+    <span asp-validation-for="Content" class="text-danger"></span>
+
+    <label>Category</label>
+    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+    <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+    <input type="submit" value="Save" class="btn btn-default" />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

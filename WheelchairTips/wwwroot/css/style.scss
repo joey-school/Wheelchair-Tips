@@ -55,3 +55,15 @@ main {
 
     }
 }
+
+.dropdown-content {
+    a:hover {
+        background-color: transparent !important;
+    }
+}
+
+nav {
+    .dropdown-button {
+        min-width: 170px;
+    }
+}
