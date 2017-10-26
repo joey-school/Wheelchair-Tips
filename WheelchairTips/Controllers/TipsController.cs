@@ -79,8 +79,6 @@ namespace WheelchairTips.Controllers
             return View(tip);
         }
 
-
-
         // GET: Tips/Create
         [Authorize]
         public IActionResult Create()

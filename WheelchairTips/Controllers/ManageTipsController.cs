@@ -105,6 +105,19 @@ namespace WheelchairTips.Controllers
             return View(tip);
         }
 
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteTip(int id)
+        {
+            var tip = _context.Tip
+                .Single(m => m.Id == id);
+
+            _context.Tip.Remove(tip);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         private bool TipExists(int id)
         {
             return _context.Tip.Any(e => e.Id == id);
