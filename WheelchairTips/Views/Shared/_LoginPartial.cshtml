@@ -15,7 +15,7 @@
                         <ul id='dropdown1' class='dropdown-content'>
                             @if (User.IsInRole("Member"))
                             {
-                                <li><a asp-area="" asp-controller="Profile" asp-action="Index" title="Profile">Profile</a></li>
+                                <li><a asp-area="" asp-controller="MemberDashboard" asp-action="Index" title="Dashboard">Dashboard</a></li>
                             }
                         
                             @if (User.IsInRole("Admin"))

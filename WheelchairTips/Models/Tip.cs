@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace WheelchairTips.Models
 
         [Required]
         public string Title { get; set; }
+
         public string Content { get; set; }
+
+        public string ImageName { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

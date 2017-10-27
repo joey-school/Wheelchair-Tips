@@ -12,6 +12,8 @@ using WheelchairTips.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using WheelchairTips.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using WheelchairTips.Authorization;
 
 namespace WheelchairTips
 {
@@ -52,6 +54,9 @@ namespace WheelchairTips
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            // Add authorization handler so it can be used in controllers.
+            services.AddScoped<IAuthorizationHandler, TipIsOwnerAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
