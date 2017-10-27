@@ -57,6 +57,7 @@ namespace WheelchairTips
 
             // Add authorization handler so it can be used in controllers.
             services.AddScoped<IAuthorizationHandler, TipIsOwnerAuthorizationHandler>();
+            services.AddSingleton<IAuthorizationHandler, TipAdminAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

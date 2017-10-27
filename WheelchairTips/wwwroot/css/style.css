@@ -39,3 +39,13 @@ main {
 
 nav .dropdown-button {
   min-width: 170px; }
+
+.edit-tip .image-upload {
+  margin: 0 0 10px 0; }
+  .edit-tip .image-upload label {
+    display: block; }
+  .edit-tip .image-upload img {
+    max-width: 300px;
+    margin: 10px 0; }
+  .edit-tip .image-upload input {
+    display: block; }
