@@ -39,16 +39,13 @@
     </form>
 </div>
 
-
-
-
 <div class="row">
     @foreach (var item in Model.Tips)
             {
         <div class="col s6 m6">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://materializecss.com/images/sample-1.jpg">
+                    <img src="~/uploads/img/@item.ImageName" asp-append-version="true" />
                     <span class="card-title">@Html.DisplayFor(modelItem => item.Title)</span>
                 </div>
                 <div class="card-content">

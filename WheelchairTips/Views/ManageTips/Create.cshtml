@@ -2,27 +2,32 @@
 
 @{
     Layout = "_LayoutDashboard";
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Tip";
 }
 
-<h2>Create</h2>
+<h2>@ViewData["Title"]</h2>
 
 <form asp-action="Create" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly"></div>
 
-    <label asp-for="Title" class="col-md-2 control-label"></label>
-    <input asp-for="Title" class="form-control" />
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
     <span asp-validation-for="Title" class="text-danger"></span>
 
-    <label asp-for="Content" class="col-md-2 control-label"></label>
-    <input asp-for="Content" class="form-control" />
+    <label asp-for="Content"></label>
+    <input asp-for="Content" />
     <span asp-validation-for="Content" class="text-danger"></span>
 
-    <input type="file" name="files" multiple />
+    <div class="image-upload">
+        <label asp-for="ImageName"></label>
+        <input type="file" name="files" multiple />
+        <span asp-validation-for="ImageName" class="text-danger"></span>
+    </div>
 
+    <label asp-for="CategoryId"></label>
     <select asp-for="CategoryId" asp-items="ViewBag.CategoryId"></select>
 
-    <input type="submit" value="Create" class="btn btn-default" />
+    <input type="submit" value="Create" class="btn crud" />
 </form>
 
 @section Scripts {

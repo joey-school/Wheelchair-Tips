@@ -12,6 +12,7 @@ using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using WheelchairTips.Authorization;
+using WheelchairTips.Services;
 
 namespace WheelchairTips.Controllers
 {
@@ -23,6 +24,7 @@ namespace WheelchairTips.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAuthorizationService _authorizationService;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private TipService _tipService;
 
         public ManageTipsController(WheelchairTipsContext context, UserManager<ApplicationUser> userManager, IAuthorizationService authorizationService, IHostingEnvironment hostingEnvironment)
         {
@@ -30,6 +32,7 @@ namespace WheelchairTips.Controllers
             _userManager = userManager;
             _authorizationService = authorizationService;
             _hostingEnvironment = hostingEnvironment;
+            _tipService = new TipService(_context);
         }
 
         public IActionResult Index()
@@ -99,8 +102,7 @@ namespace WheelchairTips.Controllers
             }
 
             // Get tip with specified id.
-            var tip = _context.Tip
-                .SingleOrDefault(t => t.Id == id);
+            var tip = _tipService.GetTipById(id);
 
             // Tip doesn't exist -> show 404
             if (tip == null)
@@ -159,6 +161,13 @@ namespace WheelchairTips.Controllers
                 {
                     // Handle image upload if one is uploaded.
                     var imageName = HandleImageUpload();
+
+                    // When there is no image name there isn't one uploaded -> so use existing image name.
+                    if (String.IsNullOrEmpty(imageName))
+                    {
+                        imageName = tip.ImageName;
+                    }
+
                     tip.ImageName = imageName;
 
                     // All input is valid -> save model to database.

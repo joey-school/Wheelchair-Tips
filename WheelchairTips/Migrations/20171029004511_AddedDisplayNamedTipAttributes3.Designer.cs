@@ -8,9 +8,10 @@ using WheelchairTips.Models;
 namespace WheelchairTips.Migrations
 {
     [DbContext(typeof(WheelchairTipsContext))]
-    partial class WheelchairTipsContextModelSnapshot : ModelSnapshot
+    [Migration("20171029004511_AddedDisplayNamedTipAttributes3")]
+    partial class AddedDisplayNamedTipAttributes3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

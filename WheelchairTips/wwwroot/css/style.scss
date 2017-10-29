@@ -69,19 +69,35 @@ nav {
 }
 
 .edit-tip {
-    .image-upload {
-        margin: 0 0 10px 0;
-        label {
-            display: block;
-        }
 
-        img {
-            max-width: 300px;
-            margin: 10px 0;
-        }
+}
 
-        input {
-            display: block;
-        }
+.image-upload {
+    margin: 0 0 20px 0;
+
+    label {
+        margin-bottom: 20px;
+        display: block;
     }
+
+    img {
+        max-width: 300px;
+        margin: 10px 0;
+    }
+
+    input {
+        margin-bottom: 20px;
+        display: block;
+    }
+}
+
+.text-danger {
+    margin-bottom: 20px;
+    font-style: italic;
+    color: red;
+    display: block;
+}
+
+.crud {
+    margin-top: 10px;
 }

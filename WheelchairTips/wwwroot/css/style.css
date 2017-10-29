@@ -40,12 +40,23 @@ main {
 nav .dropdown-button {
   min-width: 170px; }
 
-.edit-tip .image-upload {
-  margin: 0 0 10px 0; }
-  .edit-tip .image-upload label {
+.image-upload {
+  margin: 0 0 20px 0; }
+  .image-upload label {
+    margin-bottom: 20px;
     display: block; }
-  .edit-tip .image-upload img {
+  .image-upload img {
     max-width: 300px;
     margin: 10px 0; }
-  .edit-tip .image-upload input {
+  .image-upload input {
+    margin-bottom: 20px;
     display: block; }
+
+.text-danger {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: red;
+  display: block; }
+
+.crud {
+  margin-top: 10px; }
