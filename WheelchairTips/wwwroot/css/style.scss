@@ -114,8 +114,16 @@ textarea {
     padding: 10px !important;
 }
 
-form.register {
+form.auth {
     h4 {
         margin: 40px 0;
+    }
+
+    input {
+        background-color: #fff !important;
+    }
+
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px white inset !important;
     }
 }
