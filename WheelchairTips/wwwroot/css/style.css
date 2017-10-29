@@ -60,3 +60,6 @@ nav .dropdown-button {
 
 .crud {
   margin-top: 10px; }
+
+.card-content .category {
+  margin-top: 10px !important; }

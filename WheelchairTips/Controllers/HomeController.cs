@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using WheelchairTips.Models;
 using WheelchairTips.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace WheelchairTips.Controllers
 {
@@ -19,9 +20,28 @@ namespace WheelchairTips.Controllers
         }
 
         public IActionResult Index() {
-            TipsCategoriesViewModel tipsCategories = new TipsCategoriesViewModel();
+            TipsCategoriesViewModel2 tipsCategories = new TipsCategoriesViewModel2();
 
-            tipsCategories.Tips = _context.Tip.ToList();
+            //tipsCategories.Tips = _context.Tip.ToList();
+
+            List<TipCardViewModel> tipCards = new List<TipCardViewModel>();
+
+            foreach (var tip in _context.Tip.Include(t => t.Category).ToList())
+            {
+                TipCardViewModel tipCard = new TipCardViewModel
+                {
+                    Id = tip.Id,
+                    Title = tip.Title,
+                    ContentShort = tip.Content.Substring(0, 100).Trim() + "...",
+                    ImageName = tip.ImageName,
+                    CategoryName = tip.Category.Name,
+                    IsDisabled = tip.IsDisabled
+                };
+
+                tipCards.Add(tipCard);
+            }
+
+            tipsCategories.TipCards = tipCards;
             tipsCategories.CategoriesSelectList = new List<SelectListItem>();
             tipsCategories.CategoriesSelectList.Add(new SelectListItem { Value = "", Text = "All" });
 
