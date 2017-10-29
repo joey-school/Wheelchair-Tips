@@ -51,6 +51,11 @@
         });
 
         console.log("init wheelchair tips");
+
+        $('.disable-tip-toggle .lever').on('click', function () {
+            console.log('switch');
+            $(this).closest("form").submit();
+        });
     </script>
 </body>
 </html>

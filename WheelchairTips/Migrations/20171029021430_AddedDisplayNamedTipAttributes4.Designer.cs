@@ -8,9 +8,10 @@ using WheelchairTips.Models;
 namespace WheelchairTips.Migrations
 {
     [DbContext(typeof(WheelchairTipsContext))]
-    partial class WheelchairTipsContextModelSnapshot : ModelSnapshot
+    [Migration("20171029021430_AddedDisplayNamedTipAttributes4")]
+    partial class AddedDisplayNamedTipAttributes4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -191,7 +192,8 @@ namespace WheelchairTips.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired();
 
                     b.Property<int>("CategoryId");
 
@@ -200,8 +202,6 @@ namespace WheelchairTips.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("ImageName");
-
-                    b.Property<bool>("IsDisabled");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -257,7 +257,8 @@ namespace WheelchairTips.Migrations
                 {
                     b.HasOne("WheelchairTips.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Tips")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WheelchairTips.Models.Category", "Category")
                         .WithMany("Tips")

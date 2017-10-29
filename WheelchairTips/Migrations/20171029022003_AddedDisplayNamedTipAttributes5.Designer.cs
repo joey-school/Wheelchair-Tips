@@ -8,9 +8,10 @@ using WheelchairTips.Models;
 namespace WheelchairTips.Migrations
 {
     [DbContext(typeof(WheelchairTipsContext))]
-    partial class WheelchairTipsContextModelSnapshot : ModelSnapshot
+    [Migration("20171029022003_AddedDisplayNamedTipAttributes5")]
+    partial class AddedDisplayNamedTipAttributes5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -200,8 +201,6 @@ namespace WheelchairTips.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("ImageName");
-
-                    b.Property<bool>("IsDisabled");
 
                     b.Property<string>("Title")
                         .IsRequired()

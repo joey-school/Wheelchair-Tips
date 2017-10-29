@@ -10,7 +10,8 @@ namespace WheelchairTips.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            // For now redirect to 'manage tips'.
+            return RedirectToAction("Index", "ManageTips");
         }
     }
 }

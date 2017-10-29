@@ -8,10 +8,10 @@ namespace WheelchairTips.Controllers
 {
     public class AdminDashboardController : Controller
     {
- 
         public IActionResult Index()
         {
-            return View();
+            // For now redirect to 'manage tips'.
+            return RedirectToAction("Index", "ManageTips");
         }
     }
 }

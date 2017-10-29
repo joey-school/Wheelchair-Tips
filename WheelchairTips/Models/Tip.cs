@@ -19,7 +19,6 @@ namespace WheelchairTips.Models
         [StringLength(1000, MinimumLength = 50)]
         public string Content { get; set; }
 
-        [Required]
         [Display(Name = "Image")]
         public string ImageName { get; set; }
 
@@ -28,8 +27,9 @@ namespace WheelchairTips.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        [Required]
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
+        public bool IsDisabled { get; set; }
     }
 }
