@@ -4,6 +4,8 @@
     ViewData["Title"] = "Tips";
 }
 
+<h3>We have found <b>@Model.TipCards.Count</b> tips.</h3>
+
 <div class="row">
     <form asp-controller="Tips" asp-action="Index" method="get">
         <div class="col s6 category-filter">
