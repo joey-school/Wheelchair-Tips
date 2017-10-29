@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WheelchairTips.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WheelchairTips.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private readonly WheelchairTipsContext _context;

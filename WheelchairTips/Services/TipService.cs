@@ -123,6 +123,22 @@ namespace WheelchairTips.Services
             _context.SaveChanges();
         }
 
+        // Disable tip to now show up in views.
+        public void DisableTip(Tip tip)
+        {
+            // Logic to flip boolean according to disable/enable state.
+            if (!tip.IsDisabled)
+            {
+                tip.IsDisabled = true;
+            }
+            else
+            {
+                tip.IsDisabled = false;
+            }
+
+            _context.SaveChanges();
+        }
+
         // Handles uploading of an image, this will return the image name.
         public string HandleImageUpload(IFormFileCollection files)
         {

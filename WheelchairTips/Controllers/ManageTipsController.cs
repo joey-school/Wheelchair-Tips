@@ -231,16 +231,8 @@ namespace WheelchairTips.Controllers
                 return NotFound();
             }
 
-            if (!tip.IsDisabled)
-            {
-                tip.IsDisabled = true;
-            }
-            else
-            {
-                tip.IsDisabled = false;
-            }
-
-            _context.SaveChanges();
+            // Disable tip.
+            _tipService.DisableTip(tip);
 
             return RedirectToAction("Index");
         }
