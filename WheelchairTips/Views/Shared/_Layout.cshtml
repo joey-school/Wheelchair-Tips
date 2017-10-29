@@ -1,23 +1,4 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WheelchairTips</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/css/style.css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-    @Html.Raw(JavaScriptSnippet.FullScript)
-</head>
+﻿@await Html.PartialAsync("_MasterHeader")
 <body>
     <nav class="head">
         <div class="nav-wrapper container">
@@ -30,31 +11,18 @@
     </nav>
 
     <div class="container">
-
         @RenderBody()
-
-    </div>  
-
-    <environment names="Development">
-
-    </environment>
-    <environment names="Staging,Production">
-
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
+    </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
+    @RenderSection("Scripts", required: false)
     <script>
-        // Write your Javascript code.
+        console.log("init wheelchair tips");
+
         $(document).ready(function () {
             $('select').material_select();
         });
-
-        console.log(8);
     </script>
-
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

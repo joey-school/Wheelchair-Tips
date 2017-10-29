@@ -1,18 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WheelchairTips</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/css/style.css" />
-    </environment>
-</head>
+﻿@await Html.PartialAsync("_MasterHeader")
 <body class="dashboard">
     @if (User.IsInRole(Constants.ContactAdministratorsRole))
     {
@@ -46,11 +32,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     @RenderSection("Scripts", required: false)
     <script>
+        console.log("init wheelchair tips");
+
         $(document).ready(function () {
             $('select').material_select();
         });
-
-        console.log("init wheelchair tips");
 
         $('.disable-tip-toggle .lever').on('click', function () {
             console.log('switch');
