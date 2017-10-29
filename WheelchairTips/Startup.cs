@@ -47,7 +47,10 @@ namespace WheelchairTips
             services.AddDbContext<WheelchairTipsContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WheelchairTipsContext")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<WheelchairTipsContext>()
                 .AddDefaultTokenProviders();
 
