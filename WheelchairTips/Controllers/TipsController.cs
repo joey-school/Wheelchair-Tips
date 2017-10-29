@@ -9,6 +9,7 @@ using WheelchairTips.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using WheelchairTips.Models.ViewModels;
+using WheelchairTips.Services;
 
 namespace WheelchairTips.Controllers
 {
@@ -16,49 +17,47 @@ namespace WheelchairTips.Controllers
     {
         private readonly WheelchairTipsContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private TipService _tipService;
 
         public TipsController(WheelchairTipsContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+            _tipService = new TipService(context, null);
         }
 
         public IActionResult Index(string categoryId, string searchQuery)
         {
-            TipsCategoriesViewModel model = new TipsCategoriesViewModel();
+            TipsCategoriesViewModel2 tipsCategories = new TipsCategoriesViewModel2();
 
+            tipsCategories.CategoriesSelectList = _tipService.RenderCategorySelectList();
+
+            // User filtered only by category.
             if (!String.IsNullOrEmpty(categoryId) && String.IsNullOrEmpty(searchQuery))
             {
-                Category category = _context.Category
-                    .Where(c => c.Id == Int32.Parse(categoryId))
-                    .Include(c => c.Tips)
-                    .Single();
-
-                model.Tips = category.Tips;
+                tipsCategories.TipCards = _tipService.GetAllTipCardsByCategory(Int32.Parse(categoryId));
             }
+
+            // User filtered by category + searched for a keyword.
             else if (!String.IsNullOrEmpty(categoryId) && !String.IsNullOrEmpty(searchQuery))
             {
-                model.Tips = _context.Tip
-                    .Where(t => t.CategoryId == Int32.Parse(categoryId))
-                    .Where(t => t.Content.Contains(searchQuery))
-                    .ToList();
+                tipsCategories.TipCards = _tipService.GetAllTipCardsByCategoryAndSearchQuery(Int32.Parse(categoryId), searchQuery);
             }
+
+            // User searched only for a keyword.
             else if (String.IsNullOrEmpty(categoryId) && !String.IsNullOrEmpty(searchQuery))
             {
-                // need to call category categories
-                model.Tips = _context.Tip
-                    .Where(t => t.Content.Contains(searchQuery))
-                    .ToList();
+                tipsCategories.TipCards = _tipService.GetAllTipCardsBySearchQuery(searchQuery);
             }
+
+            // User didn't filtered or searched.
             else
             {
-                model.Tips = _context.Tip
-                    .ToList();
+                tipsCategories.TipCards = _tipService.GetAllTipCards();
             }
 
-            return View(model);
+            return View(tipsCategories);
         }
-
 
         // GET: Tips/Details/5
         public async Task<IActionResult> Details(int? id)

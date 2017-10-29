@@ -1,32 +1,52 @@
-@model WheelchairTips.Models.ViewModels.TipsCategoriesViewModel
+@model WheelchairTips.Models.ViewModels.TipsCategoriesViewModel2
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="master-wrap">
-    <h1>Our tips !</h1>
+<div class="row">
+    <form asp-controller="Tips" asp-action="Index" method="get">
+        <div class="col s6 category-filter">
+            <p>Filter by category:</p>
 
-    <div class="row">
 
-            @foreach (var tip in Model.Tips)
-            {
-                <div class="col s6 m6">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="http://materializecss.com/images/sample-1.jpg">
-                            <span class="card-title">@Html.DisplayFor(modelItem => tip.Title)</span>
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                @Html.DisplayFor(modelItem => tip.Content)
-                            </p>
-                        </div>
-                        <div class="card-action">
-                            <a asp-controller="Tips" asp-action="Details" asp-route-id="@tip.Id" class="blue-grey-text text-darken-4">Details</a>
-                        </div>
+            <select asp-for="CategoryId" asp-items='Model.CategoriesSelectList'></select>
+
+            <button type="submit" class="btn">Filter</button>
+
+        </div>
+
+        <div class="col s6 category-filter">
+            <p>Search for tips:</p>
+
+
+            <input type="text" name="SearchQuery">
+            <button type="submit" class="btn">Search</button>
+
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    @foreach (var item in Model.TipCards)
+    {
+        @if (!item.IsDisabled)
+        {
+            <div class="col s6 m6">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="~/uploads/img/@item.ImageName" asp-append-version="true" />
+                        <span class="card-title">@Html.DisplayFor(modelItem => item.Title)</span>
+                    </div>
+                    <div class="card-content">
+                        <p>@Html.DisplayFor(modelItem => item.ContentShort)</p>
+                        <p class="category"><b>Category:</b> @item.CategoryName</p>
+                    </div>
+                    <div class="card-action">
+                        <a asp-controller="Tips" asp-action="Details" asp-route-id="@item.Id" class="blue-grey-text text-darken-4">Details</a>
                     </div>
                 </div>
-            }
-    </div>
+            </div>
+        }
+    }
 </div>

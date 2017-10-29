@@ -43,31 +43,29 @@
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </td>
 
-                <td>
-                    @*<form asp-action="Disable">
-                        <input type="hidden" name="Id" value="@item.Id" />
-                        <input type="submit" value="Disable" class="btn blue" />
-                    </form>*@
-
-                    <form asp-action="Disable" class="disable-tip-toggle">
-                        <div class="switch">
-                            <label>
-                                Active
-                                <input type="hidden" name="Id" value="@item.Id" />
-                                @if (!item.IsDisabled)
-                                {
-                                    <input type="checkbox">
-                                }
-                                @if (item.IsDisabled)
-                                {
-                                    <input type="checkbox" checked>
-                                }
-                                <span class="lever"></span>
-                                Disabled
-                            </label>
-                        </div>
-                    </form>
-                </td>
+                @if (User.IsInRole(Constants.ContactAdministratorsRole))
+                {
+                    <td>
+                        <form asp-action="Disable" class="disable-tip-toggle">
+                            <div class="switch">
+                                <label>
+                                    Active
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    @if (!item.IsDisabled)
+                                    {
+                                        <input type="checkbox">
+                                    }
+                                    @if (item.IsDisabled)
+                                    {
+                                        <input type="checkbox" checked>
+                                    }
+                                    <span class="lever"></span>
+                                    Disabled
+                                </label>
+                            </div>
+                        </form>
+                    </td>
+                }
 
                 <td>
                     <form asp-action="Delete">
