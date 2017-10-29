@@ -11,6 +11,7 @@ namespace WheelchairTips.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(30, MinimumLength = 2)]
         public string Name { get; set; }
 
         public List<Tip> Tips { get; set; }

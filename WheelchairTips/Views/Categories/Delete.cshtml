@@ -1,16 +1,16 @@
 @model WheelchairTips.Models.Category
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete Category";
     Layout = "_LayoutDashboard";
 }
 
-<h2>Delete</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h4>Are you sure you want to delete this?</h4>
 <div>
-    <h4>Category</h4>
-    <hr />
+    <p>@Html.DisplayFor(model => model.Name)</p>
+    @*<hr />
     <dl class="dl-horizontal">
         <input type="hidden" asp-for="Id" />
         <dt>
@@ -19,12 +19,11 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-    </dl>
+    </dl>*@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-default" />
         </div>
     </form>
 </div>
