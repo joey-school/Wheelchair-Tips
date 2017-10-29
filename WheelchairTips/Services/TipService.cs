@@ -54,6 +54,7 @@ namespace WheelchairTips.Services
             // Get all tips including categories.
             List<Tip> tips = _context.Tip
                 .Include(t => t.Category)
+                .Where(t => t.IsDisabled == false)
                 .ToList();
 
             // Return our rendered tip cards.
@@ -63,14 +64,14 @@ namespace WheelchairTips.Services
         // Get all tips by category formatted in a tip card.
         public List<TipCardViewModel> GetAllTipCardsByCategory(int categoryId)
         {
-            // Get all tips by category id.
-            Category category = _context.Category
-                .Where(c => c.Id == categoryId)
-                .Include(c => c.Tips)
-                .Single();
+            List<Tip> tips = _context.Tip
+               .Include(t => t.Category)
+               .Where(t => t.IsDisabled == false)
+               .Where(t => t.CategoryId == categoryId)
+               .ToList();
 
             // Return our rendered tip cards.
-            return RenderTipCards(category.Tips);
+            return RenderTipCards(tips);
         }
 
         // Get all tips by category and search query formatted in a tip card.
@@ -79,6 +80,7 @@ namespace WheelchairTips.Services
             // Get all tips by category and search query.
             List<Tip> tips = _context.Tip
                 .Include(t => t.Category)
+                .Where(t => t.IsDisabled == false)
                 .Where(t => t.CategoryId == categoryId)
                 .Where(t => t.Content.Contains(searchQuery))
                 .ToList();
@@ -93,6 +95,7 @@ namespace WheelchairTips.Services
             // Get all tips by search query.
             List<Tip> tips = _context.Tip
                 .Include(t => t.Category)
+                .Where(t => t.IsDisabled == false)
                 .Where(t => t.Content.Contains(searchQuery))
                 .ToList();
 
