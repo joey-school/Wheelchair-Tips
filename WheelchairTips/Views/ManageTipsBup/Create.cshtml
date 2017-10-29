@@ -1,13 +1,13 @@
 @model WheelchairTips.Models.Tip
 
 @{
-    Layout = "_LayoutDashboard";
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "Create";
 }
 
 <h2>Create</h2>
 
-<form asp-action="Create" enctype="multipart/form-data">
+<form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <label asp-for="Title" class="col-md-2 control-label"></label>
@@ -17,8 +17,6 @@
     <label asp-for="Content" class="col-md-2 control-label"></label>
     <input asp-for="Content" class="form-control" />
     <span asp-validation-for="Content" class="text-danger"></span>
-
-    <input type="file" name="files" multiple />
 
     <select asp-for="CategoryId" asp-items="ViewBag.CategoryId"></select>
 

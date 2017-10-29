@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\AdminDashboard\" />
     <Folder Include="Views\ManageTips\" />
     <Folder Include="Views\MemberDashboard\" />
     <Folder Include="wwwroot\uploads\img\" />

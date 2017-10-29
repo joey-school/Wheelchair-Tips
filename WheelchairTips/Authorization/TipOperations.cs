@@ -26,5 +26,6 @@ namespace WheelchairTips.Authorization
         public static readonly string DeleteOperationName = "Delete";
 
         public static readonly string ContactAdministratorsRole = "Admin";
+        public static readonly string MemberRole = "Member";
     }
 }

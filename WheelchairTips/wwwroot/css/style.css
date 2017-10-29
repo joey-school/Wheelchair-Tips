@@ -27,11 +27,11 @@ h1 {
 main {
   padding-left: 300px; }
 
-.admin .side-nav {
+.dashboard .side-nav {
   margin-top: 64px; }
 
 @media only screen and (min-width: 993px) {
-  .admin .container.content {
+  .dashboard .container.content {
     width: 85%; } }
 
 .dropdown-content a:hover {

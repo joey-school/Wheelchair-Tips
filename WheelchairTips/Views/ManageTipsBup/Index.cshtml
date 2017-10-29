@@ -1,7 +1,7 @@
 @model IEnumerable<WheelchairTips.Models.Tip>
 
 @{
-    Layout = "_LayoutDashboard";
+    Layout = "_LayoutAdmin";
 }
 
 <p>
@@ -14,12 +14,9 @@
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             
-            @if (User.IsInRole(Constants.ContactAdministratorsRole))
-            {
-                <th>
-                    @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-                </th>
-            }
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -30,12 +27,9 @@
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
 
-                @if (User.IsInRole(Constants.ContactAdministratorsRole))
-                {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-                    </td>
-                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
 
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

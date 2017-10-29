@@ -13,16 +13,14 @@
 
                         <!-- Dropdown Structure -->
                         <ul id='dropdown1' class='dropdown-content'>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li><a asp-area="" asp-controller="AdminDashboard" asp-action="Index" title="Dashboard">Dashboard</a></li>
+                            }
                             @if (User.IsInRole("Member"))
                             {
                                 <li><a asp-area="" asp-controller="MemberDashboard" asp-action="Index" title="Dashboard">Dashboard</a></li>
                             }
-                        
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li><a asp-area="" asp-controller="Admin" asp-action="Index" title="Admin">Admin</a></li>
-                            }
-
                             <li class="divider"></li>
                             <li><button type="submit" class="">Log out</button></li>
                         </ul>

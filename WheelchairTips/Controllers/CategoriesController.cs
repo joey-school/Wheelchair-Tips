@@ -134,6 +134,7 @@ namespace WheelchairTips.Controllers
         }
 
         // POST: Categories/Delete/5
+        // By default EF will cascade delete all related tips. (https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -109,7 +109,7 @@ namespace WheelchairTips.Controllers
             }
 
             // Check if user is authorized to edit tip.
-            var isAuthorized = await _authorizationService.AuthorizeAsync( User, tip, TipOperations.Update);
+            var isAuthorized = await _authorizationService.AuthorizeAsync(User, tip, TipOperations.Update);
 
             // When user is not authorized show warning.
             if (!isAuthorized)

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WheelchairTips.Controllers
 {
-    public class AdminController : Controller
+    public class AdminDashboardController : Controller
     {
  
         public IActionResult Index()
